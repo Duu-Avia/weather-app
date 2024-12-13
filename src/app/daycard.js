@@ -4,13 +4,23 @@ import { CiHome } from "react-icons/ci";
 import { SlLocationPin } from "react-icons/sl";
 import { FaRegHeart } from "react-icons/fa6";
 import { IoMdPerson } from "react-icons/io";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-export function DayCard({ className, value, city, weather }) {
+export function DayCard({ className, value, city, weather, }) {
   const conditionText =
     value == "night" ? weather.conditionNight : weather.conditionDay;
+  //   const [testText, setTestText] = useState("");
 
-  console.log(conditionText);
+  // useEffect(() => {
+  //   if (conditionText === "Cloudy") {
+  //     setTestText("hi");
+  //   } else {
+  //     setTestText("nothing");
+  //   }
+  // }, [conditionText]);
+  const testText = conditionText === 'Cloudy'? "hi": "nothing"
+  
+  console.log(weather.conditionNight);
   const weatherImageNight =
     conditionText == "Overcast"
       ? "/pictures/NightClouds.png"
@@ -30,6 +40,7 @@ export function DayCard({ className, value, city, weather }) {
   const cityNameColor = value == "night" ? "text-[#FFFF]" : cityNameDay;
   const cardBackgroundColor = value == "night" ? nightCard : dayCard;
   const weatherTemp = value === "day" ? weather.dayTemp : weather.nightTemp;
+ 
   return (
     <div
       id="dayCard"
@@ -55,7 +66,7 @@ export function DayCard({ className, value, city, weather }) {
           height={200}
           alt=""
         />
-      </div>
+      {testText}</div>
       <div
         id="temperature"
         className="text-[9rem] bg-gradient-to-t from-[#111827] to-[#6B7280] text-transparent bg-clip-text font-extrabold ml-[48px]"

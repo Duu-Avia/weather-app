@@ -33,7 +33,7 @@ export default function Home() {
           conditionDay: data.forecast.forecastday[0].day.condition.text,
           conditionNight: data.forecast.forecastday[0].hour[23].condition.text,
         });
-        console.log(data.forecast.forecastday[0].day.condition);
+       
       });
   }, [city]);
 
