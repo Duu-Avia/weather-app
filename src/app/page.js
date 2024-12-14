@@ -4,6 +4,8 @@ import { DayCard } from "./daycard";
 import { InputFunction } from "./input";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import { useEffect, useState } from "react";
+import { SuggestionField } from "./suggestionfield";
+
 const API_KEY = "b99c7cbce5bc40968d785001241312";
 export default function Home() {
   const [search, setSearch] = useState("");
@@ -27,13 +29,13 @@ export default function Home() {
     )
       .then((res) => res.json())
       .then((data) => {
+        console.log(data);
         setWeather({
           nightTemp: data.forecast.forecastday[0].day.mintemp_c,
           dayTemp: data.forecast.forecastday[0].day.maxtemp_c,
           conditionDay: data.forecast.forecastday[0].day.condition.text,
           conditionNight: data.forecast.forecastday[0].hour[23].condition.text,
         });
-       
       });
   }, [city]);
 
@@ -45,10 +47,14 @@ export default function Home() {
       <div id="halfCircle" className="absolute top-[525px] left-[723px] z-20">
         <Image src="/pictures/Ellipse25.png" width={74} height={0} alt="" />
       </div>
-      <div className="absolute top-[430px] left-[635px] size-[340px] z-40 border-[white] border-[1px] border-l-[#111827]  opacity-[10%]  rounded-full"></div>
-      <div className="absolute top-[330px] left-[535px] size-[540px] z-40 border-[white] border-[1px]  opacity-[10%] rounded-full"></div>
-      <div className="absolute top-[130px] left-[335px] size-[940px] z-40 border-[white] border-[1px]  opacity-[10%] rounded-full"></div>
-      <div className="absolute top-[-100px] left-[130px] size-[1340px] z-40 border-[white] border-[1px]  opacity-[10%] rounded-full "></div>
+      <div className="absolute top-[430px] left-[635px] size-[340px] z-30 border-[#000000] border-[1px]   opacity-[10%]  rounded-full"></div>
+      <div className="absolute top-[330px] left-[535px] size-[540px] z-30 border-[#000000] border-[1px]  opacity-[10%] rounded-full"></div>
+      <div className="absolute top-[130px] left-[335px] size-[940px] z-30 border-[#000000] border-[1px]  opacity-[10%] rounded-full"></div>
+      <div className="absolute top-[-100px] left-[130px] size-[1340px] z-30 border-[#000000] border-[1px]  opacity-[10%] rounded-full "></div>
+      <div className="absolute top-[430px] left-[635px] size-[340px] z-30 border-[white] border-[1px]   opacity-[10%]  rounded-full"></div>
+      <div className="absolute top-[330px] left-[535px] size-[540px] z-30 border-[white] border-[1px]  opacity-[10%] rounded-full"></div>
+      <div className="absolute top-[130px] left-[335px] size-[940px] z-30 border-[white] border-[1px]  opacity-[10%] rounded-full"></div>
+      <div className="absolute top-[-100px] left-[130px] size-[1340px] z-30 border-[white] border-[1px]  opacity-[10%] rounded-full "></div>
       <div className="size-[160px] rounded-[200px]  bg-[#F3F4F6] absolute z-10  top-0 left-0 right-0 bottom-0 m-auto">
         <div
           id="pineConeLogoContainer"
@@ -65,9 +71,14 @@ export default function Home() {
         </div>
       </div>
       <div id="left-container" className="w-[100%] h-[1200px] ">
-        <InputFunction value={onChangeText} keyDown={keyDown} />
+        <InputFunction
+          value={search}
+          onChangeText={onChangeText}
+          keyDown={keyDown}
+        />
         <DayCard value="day" city={city} weather={weather} />
       </div>
+
       <div
         id="blackdiv"
         className="bg-[#0F141E] w-32 h-40 absolute z-0 top-[530px] left-[849px]"
