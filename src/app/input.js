@@ -1,6 +1,9 @@
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import { SuggestionField } from "./suggestionfield";
 import { useEffect, useState } from "react";
+import { Manrope } from "next/font/google";
+
+const manrope = Manrope({ subsets: ["latin"] });
 
 export function InputFunction({ value, onChangeText, keyDown }) {
   const [isFocused, setIsFocused] = useState(false);
@@ -19,9 +22,10 @@ export function InputFunction({ value, onChangeText, keyDown }) {
       .then((countryData) => {
         let arr = [];
         countryData.data.forEach((country) => {
-          country.cities.forEach((city) =>
+          console.log(countryData);
+          country.cities.forEach((cities) =>
             arr.push({
-              city: city.toLowerCase(),
+              city: cities.toLowerCase(),
               country: country.country.toLowerCase(),
             })
           );
@@ -38,7 +42,7 @@ export function InputFunction({ value, onChangeText, keyDown }) {
   console.log(value, cities.slice(0, 7), filteredCities.slice(0, 7));
 
   return (
-    <div>
+    <div className={`${manrope.className} font-[700]`}>
       <div className="relative">
         <input
           onFocus={handleOnFocus}
@@ -54,7 +58,7 @@ export function InputFunction({ value, onChangeText, keyDown }) {
           <FaMagnifyingGlass className="text-[black] opacity-[20%] top-[60px] left-[55px] size-6  absolute z-50" />
         </span>
         {isFocused && (
-          <SuggestionField suggestions={filteredCities.slice(0, 7)} />
+          <SuggestionField suggestions={filteredCities.slice(0, 4)} />
         )}
       </div>
     </div>

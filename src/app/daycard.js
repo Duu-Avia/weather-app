@@ -20,7 +20,7 @@ export function DayCard({ className, value, city, weather }) {
       ? "/pictures/DaySnowy.png"
       : "/pictures/DaySunny.png";
   const dayCard = "bg-white";
-  const nightCard = "bg-gradient-to-b from-[#1F2937] to-[#11182700]";
+  const nightCard = "bg-gradient-to-b from-[#1F2937] to-[#111827BF]";
   const cityNameDay = "text-[#FF8E27]";
   const brightClearDayColor = "text-[#FF8E27]";
   const weatherImage = value == "night" ? weatherImageNight : weatherImageDay;
@@ -34,7 +34,7 @@ export function DayCard({ className, value, city, weather }) {
   return (
     <div
       id="dayCard"
-      className={`rounded-[50px] w-[414px] h-[832px] ${cardBackgroundColor}  absolute top-[200px] left-[190px] z-50 ${className}`}
+      className={`rounded-[50px] w-[414px] h-[832px] ${cardBackgroundColor}  absolute top-[200px] left-[190px] z-40 ${className} backdrop-blur-sm  `}
     >
       <div
         id="date"

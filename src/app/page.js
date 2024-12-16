@@ -85,10 +85,19 @@ export default function Home() {
       ></div>
       <div id="right-container" className=" w-[100%] relative">
         <div className="bg-[#0F141E] h-[550px] rounded-bl-[98px]"></div>
+
         <div className="bg-[#0F141E] h-[100px]  ml-[60px]">
           <DayCard value="night" city={city} weather={weather} />
         </div>
         <div className="bg-[#0F141E] rounded-tl-[98px] h-[550px]"></div>
+        <div
+          id="nightCircle"
+          className="size-[128px] bg-[#6E72C9] rounded-full absolute top-[970px] left-[500px] "
+        ></div>
+        <div
+          id="dayCircle"
+          className="size-[128px] bg-[#FF8E27] rounded-full absolute top-[250px] left-[-660px] "
+        ></div>
       </div>
     </div>
   );
