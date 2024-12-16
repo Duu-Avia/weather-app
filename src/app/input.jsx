@@ -5,7 +5,7 @@ import { Manrope } from "next/font/google";
 
 const manrope = Manrope({ subsets: ["latin"] });
 
-export function InputFunction({ value, onChangeText, keyDown }) {
+export function InputFunction({ value, onChangeText, keyDown, setSearch }) {
   const [isFocused, setIsFocused] = useState(false);
   const handleOnFocus = () => {
     setIsFocused(true);
@@ -22,7 +22,6 @@ export function InputFunction({ value, onChangeText, keyDown }) {
       .then((countryData) => {
         let arr = [];
         countryData.data.forEach((country) => {
-          console.log(countryData);
           country.cities.forEach((cities) =>
             arr.push({
               city: cities.toLowerCase(),
@@ -32,21 +31,19 @@ export function InputFunction({ value, onChangeText, keyDown }) {
         });
 
         setCities(arr);
-
-        console.log("no more");
       });
   }, []);
 
   const filteredCities = cities.filter((obj) => obj.city.includes(value));
 
-  console.log(value, cities.slice(0, 7), filteredCities.slice(0, 7));
+  // console.log(value, cities.slice(0, 7), filteredCities.slice(0, 7));
 
   return (
-    <div className={`${manrope.className} font-[700]`}>
+    <div className={`${manrope.className} font-[600]`}>
       <div className="relative">
         <input
           onFocus={handleOnFocus}
-          className="rounded-[48px] w-[567px] ml-[40px] py-[20px] pl-[50px] mt-[40px] text-black outline-none   absolute z-40  "
+          className="rounded-[48px] w-[567px] ml-[40px] py-[20px] pl-[50px] mt-[40px] text-black outline-none  absolute  z-50"
           type="text"
           placeholder="Search"
           onChange={onChangeText}
@@ -58,7 +55,11 @@ export function InputFunction({ value, onChangeText, keyDown }) {
           <FaMagnifyingGlass className="text-[black] opacity-[20%] top-[60px] left-[55px] size-6  absolute z-50" />
         </span>
         {isFocused && (
-          <SuggestionField suggestions={filteredCities.slice(0, 4)} />
+          <SuggestionField
+            suggestions={filteredCities.slice(0, 4)}
+            setSearch={setSearch}
+            handleNotFocus={handleNotFocus}
+          />
         )}
       </div>
     </div>

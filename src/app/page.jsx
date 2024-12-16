@@ -29,7 +29,6 @@ export default function Home() {
     )
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setWeather({
           nightTemp: data.forecast.forecastday[0].day.mintemp_c,
           dayTemp: data.forecast.forecastday[0].day.maxtemp_c,
@@ -75,6 +74,7 @@ export default function Home() {
           value={search}
           onChangeText={onChangeText}
           keyDown={keyDown}
+          setSearch={setSearch}
         />
         <DayCard value="day" city={city} weather={weather} />
       </div>
