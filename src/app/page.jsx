@@ -97,9 +97,7 @@ export default function Home() {
         <div
           id="dayCircle"
           className="size-[128px] bg-[#FF8E27] rounded-full absolute top-[250px] left-[-660px] "
-        >
-          hi
-        </div>
+        ></div>
       </div>
     </div>
   );
